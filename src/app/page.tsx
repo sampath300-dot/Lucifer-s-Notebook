@@ -1,69 +1,271 @@
-import Image from "next/image";
+import React from 'react';
+import Link from 'next/link';
+import { getSiteSettings, getAppearanceSettings, getThoughts, getAudioJournals } from '@/lib/db';
+import { AudioPlayer } from '@/components/AudioPlayer';
+import { ArrowRight, Headphones, BookOpen, MessageCircleHeart } from 'lucide-react';
+import { BUTTON_CLASSES } from '@/lib/theme';
 
-export default function Home() {
+export const dynamic = 'force-dynamic';
+
+export default async function HomePage() {
+  const site = getSiteSettings();
+  const appearance = getAppearanceSettings();
+  const latestThoughts = getThoughts().slice(0, 3);
+  const latestAudio = getAudioJournals().slice(0, 2);
+
+  const buttonRadiusClass = BUTTON_CLASSES[appearance.button_style] || 'rounded-md';
+
+  const showHero = site.show_hero !== 'false';
+  const showIntro = site.show_intro !== 'false';
+  const showThoughts = site.show_thoughts !== 'false';
+  const showAudio = site.show_audio !== 'false';
+  const showTalk = site.show_talk !== 'false';
+  const showHeroImage = site.hero_show_image !== 'false' && Boolean(site.hero_image);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="w-full">
+      {/* 1. HERO SECTION */}
+      {showHero && (
+        <section className="border-b border-[var(--theme-border)]/60">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
+            <div className={`grid gap-12 items-center ${showHeroImage ? 'md:grid-cols-12' : 'max-w-2xl'}`}>
+              <div className={showHeroImage ? 'md:col-span-7 space-y-6' : 'space-y-6'}>
+                <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[var(--theme-text)] leading-[1.2]">
+                  {site.hero_heading}
+                </h1>
+                <p className="text-base sm:text-lg text-[var(--theme-secondary)] leading-relaxed max-w-xl">
+                  {site.hero_description}
+                </p>
+
+                <div className="pt-2 flex flex-wrap items-center gap-4">
+                  {site.hero_primary_cta_text && (
+                    <Link
+                      href={site.hero_primary_cta_link || '/thoughts'}
+                      className={`inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium bg-[var(--theme-accent)] text-white hover:opacity-90 transition-all cursor-pointer shadow-xs ${buttonRadiusClass}`}
+                    >
+                      <span>{site.hero_primary_cta_text}</span>
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  )}
+                  {site.hero_secondary_cta_text && (
+                    <Link
+                      href={site.hero_secondary_cta_link || '/talk'}
+                      className={`inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium border border-[var(--theme-border)] bg-[var(--theme-card)] text-[var(--theme-text)] hover:bg-[var(--theme-bg)] transition-colors cursor-pointer ${buttonRadiusClass}`}
+                    >
+                      {site.hero_secondary_cta_text}
+                    </Link>
+                  )}
+                </div>
+              </div>
+
+              {showHeroImage && (
+                <div className="md:col-span-5 flex justify-center">
+                  <div className="relative w-full max-w-sm aspect-4/3 rounded-lg overflow-hidden border border-[var(--theme-border)] shadow-xs bg-[var(--theme-card)]">
+                    <img
+                      src={site.hero_image}
+                      alt="Personal reflection"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 2. INTRODUCTION SECTION */}
+      {showIntro && (
+        <section className="border-b border-[var(--theme-border)]/60 bg-[var(--theme-card)]/40">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center">
+            {site.intro_heading && (
+              <span className="text-xs uppercase tracking-widest text-[var(--theme-accent)] font-medium mb-3 block">
+                {site.intro_heading}
+              </span>
+            )}
+            <blockquote className="font-serif text-xl sm:text-2xl text-[var(--theme-text)] font-normal leading-relaxed italic">
+              &ldquo;{site.intro_text}&rdquo;
+            </blockquote>
+          </div>
+        </section>
+      )}
+
+      {/* 3. LATEST THOUGHTS */}
+      {showThoughts && (
+        <section className="border-b border-[var(--theme-border)]/60">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+              <div>
+                <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-[var(--theme-accent)] font-semibold mb-2">
+                  <BookOpen className="h-3.5 w-3.5" />
+                  <span>Writings</span>
+                </div>
+                <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[var(--theme-text)]">
+                  {site.section_thoughts_title}
+                </h2>
+                <p className="text-sm text-[var(--theme-secondary)] mt-1">
+                  {site.section_thoughts_desc}
+                </p>
+              </div>
+              <Link
+                href="/thoughts"
+                className="text-xs sm:text-sm font-medium text-[var(--theme-accent)] hover:underline inline-flex items-center gap-1 self-start sm:self-auto"
+              >
+                <span>All thoughts</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+
+            <div className="space-y-10 divide-y divide-[var(--theme-border)]/60">
+              {latestThoughts.map((thought, idx) => {
+                const dateStr = new Date(thought.published_at).toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                });
+
+                return (
+                  <article
+                    key={thought.id}
+                    className={`group ${idx > 0 ? 'pt-10' : ''} flex flex-col md:flex-row gap-6 md:gap-8 items-start`}
+                  >
+                    {thought.cover_image && (
+                      <Link
+                        href={`/thoughts/${thought.slug}`}
+                        className="w-full md:w-56 shrink-0 aspect-16/10 rounded-md overflow-hidden border border-[var(--theme-border)] bg-[var(--theme-card)]"
+                      >
+                        <img
+                          src={thought.cover_image}
+                          alt={thought.title}
+                          className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                        />
+                      </Link>
+                    )}
+
+                    <div className="flex-1 space-y-2.5">
+                      <div className="flex items-center gap-3 text-xs text-[var(--theme-secondary)]">
+                        <time dateTime={thought.published_at}>{dateStr}</time>
+                        <span>•</span>
+                        <span className="font-medium text-[var(--theme-accent)]">{thought.category}</span>
+                      </div>
+
+                      <h3 className="font-serif text-xl sm:text-2xl font-medium text-[var(--theme-text)] group-hover:text-[var(--theme-accent)] transition-colors">
+                        <Link href={`/thoughts/${thought.slug}`}>
+                          {thought.title}
+                        </Link>
+                      </h3>
+
+                      <p className="text-sm sm:text-base text-[var(--theme-secondary)] leading-relaxed">
+                        {thought.excerpt}
+                      </p>
+
+                      <div className="pt-1">
+                        <Link
+                          href={`/thoughts/${thought.slug}`}
+                          className="text-xs font-medium text-[var(--theme-text)] hover:text-[var(--theme-accent)] inline-flex items-center gap-1 transition-colors"
+                        >
+                          <span>Read reflection</span>
+                          <ArrowRight className="h-3 w-3" />
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 4. AUDIO JOURNAL */}
+      {showAudio && (
+        <section className="border-b border-[var(--theme-border)]/60 bg-[var(--theme-card)]/20">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+              <div>
+                <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-[var(--theme-accent)] font-semibold mb-2">
+                  <Headphones className="h-3.5 w-3.5" />
+                  <span>Audio Journal</span>
+                </div>
+                <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[var(--theme-text)]">
+                  {site.section_audio_title}
+                </h2>
+                <p className="text-sm text-[var(--theme-secondary)] mt-1">
+                  {site.section_audio_desc}
+                </p>
+              </div>
+              <Link
+                href="/audio"
+                className="text-xs sm:text-sm font-medium text-[var(--theme-accent)] hover:underline inline-flex items-center gap-1 self-start sm:self-auto"
+              >
+                <span>All recordings</span>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              {latestAudio.map((entry) => {
+                const dateStr = new Date(entry.published_at).toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                });
+
+                return (
+                  <div
+                    key={entry.id}
+                    className="flex flex-col justify-between p-5 rounded-lg border border-[var(--theme-border)] bg-[var(--theme-card)] shadow-xs"
+                  >
+                    <div className="space-y-2 mb-5">
+                      <div className="flex items-center justify-between text-xs text-[var(--theme-secondary)]">
+                        <time dateTime={entry.published_at}>{dateStr}</time>
+                        <span className="tabular-nums font-medium">{entry.duration}</span>
+                      </div>
+                      <h3 className="font-serif text-lg font-medium text-[var(--theme-text)]">
+                        {entry.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[var(--theme-secondary)] line-clamp-2 leading-relaxed">
+                        {entry.description}
+                      </p>
+                    </div>
+
+                    <AudioPlayer src={entry.audio_url} duration={entry.duration} />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 5. ONE-ON-ONE CONVERSATIONS */}
+      {showTalk && (
+        <section className="py-20 sm:py-28">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+            <div className="inline-flex items-center justify-center p-3 rounded-full bg-[var(--theme-card)] border border-[var(--theme-border)] text-[var(--theme-accent)] mb-2 shadow-xs">
+              <MessageCircleHeart className="h-6 w-6" />
+            </div>
+
+            <h2 className="font-serif text-3xl sm:text-4xl font-medium text-[var(--theme-text)]">
+              {site.section_talk_title}
+            </h2>
+
+            <p className="text-base sm:text-lg text-[var(--theme-secondary)] leading-relaxed max-w-xl mx-auto">
+              {site.section_talk_desc}
+            </p>
+
+            <div className="pt-4">
+              <Link
+                href="/talk"
+                className={`inline-flex items-center justify-center px-6 py-3 text-base font-medium bg-[var(--theme-accent)] text-white hover:opacity-90 transition-all cursor-pointer shadow-xs ${buttonRadiusClass}`}
+              >
+                <span>Let&apos;s talk</span>
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }

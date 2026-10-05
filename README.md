@@ -1,36 +1,101 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# A Quiet Space — Personal Thought & Conversation Platform
+
+A production-ready personal platform designed with a calm, human, and editorial aesthetic. Built for reading essays and reflections, listening to unedited voice notes, and reaching out privately when someone wants to talk through something.
+
+---
+
+## Features
+
+### Public Website
+- **Home (`/`)**:
+  - Hero section with editable headline, copy, CTA buttons, and optional balanced image.
+  - Purpose statement / introductory reflection.
+  - Recent published thoughts in an editorial list layout.
+  - Audio journal section with clean, unobtrusive player (not styled like Spotify).
+  - One-on-one conversation invite section.
+  - Calm, restrained footer.
+- **Thoughts (`/thoughts`)**:
+  - Full archive of published writings with category filtering and real-time search.
+  - Clean reading layout without marketing cards or distracting popups.
+- **Individual Thought (`/thoughts/[slug]`)**:
+  - Distraction-free reading experience, reading time estimates, categories, tags, and related thoughts.
+- **Audio Journal (`/audio`)**:
+  - Dedicated page for spoken notes and voice reflections.
+  - Accessible audio player with play/pause, seek scrubber, ±10s skip, speed adjustment (1x, 1.25x, 1.5x), and volume/mute controls.
+- **Let's Talk (`/talk`)**:
+  - Human, welcoming conversation form (Preferred format: Chat / Voice call / Not sure yet; Preferred contact: WhatsApp / Email / Phone).
+  - Client-side and server-side validation with honeypot spam protection.
+  - Secure private submission storage in SQLite.
+
+### Admin CMS Dashboard (`/admin`)
+- **Dashboard Overview**: Summary stats (published thoughts, audio recordings, new conversations) and recent activity.
+- **Thought Management (`/admin/thoughts`)**:
+  - Create, edit, and delete thoughts.
+  - Simple WYSIWYG rich-text editor (no HTML or Markdown required).
+  - Save drafts, publish/unpublish, categorize, tag, and set cover images.
+- **Audio Management (`/admin/audio`)**:
+  - Upload persistent audio files (MP3, WAV, M4A, OGG).
+  - Add title, description, recording date, and optional cover image.
+  - Automatic duration detection.
+- **Conversation Requests (`/admin/conversations`)**:
+  - View all private inquiries with filter by status (`New`, `Contacted`, `Completed`, `Archived`).
+  - Update status and record private owner notes.
+  - One-click CSV export.
+- **Media Library (`/admin/media`)**:
+  - Upload and reuse images and audio recordings.
+  - Integrated media picker across all admin forms.
+- **Controlled Appearance Customization (`/admin/appearance`)**:
+  - 4 Curated presets: **Warm Editorial**, **Minimal Light**, **Dark Journal**, and **Soft Neutral**.
+  - Background controls: Color and custom image textures with position, sizing, and overlay opacity slider.
+  - Accent color picker with contrast preservation.
+  - Curated typography pairings for headings and body.
+  - Section spacing (Compact, Normal, Spacious), button shapes, and card border styles.
+  - **Real-time Live Preview** of changes before saving.
+- **Site & Homepage Settings (`/admin/settings`)**:
+  - Website name, owner bio, avatar, contact channels, social links, and SEO metadata.
+  - Homepage text, section titles, and section visibility toggles.
+
+---
+
+## Tech Stack
+- **Framework**: Next.js 16 (App Router, Turbopack, React 19)
+- **Styling**: Tailwind CSS v4 with dynamic CSS variables
+- **Database**: SQLite via `better-sqlite3` (stored in `data/lucifer.db`, auto-migrated & seeded)
+- **Authentication**: Stateless signed session cookies via `jose` and `bcryptjs`
+- **Icons**: `lucide-react`
+
+---
 
 ## Getting Started
 
-First, run the development server:
-
+### 1. Install Dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Run in Development Mode
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Production Build & Start
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Default Admin Credentials
+- **URL**: [http://localhost:3000/admin/login](http://localhost:3000/admin/login)
+- **Username**: `admin`
+- **Password**: `admin123`
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Running Verification Tests
+To run the automated end-to-end integration test suite covering all public and admin workflows:
+```bash
+node tests/verify-all.mjs
+```

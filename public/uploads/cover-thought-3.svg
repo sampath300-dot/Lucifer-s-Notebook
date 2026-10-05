@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F3ECE7" />
+      <stop offset="100%" stop-color="#E5D9D2" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#g3)"/>
+  <circle cx="360" cy="250" r="100" fill="#DDD0C7" opacity="0.6"/>
+  <circle cx="480" cy="240" r="80" fill="#CFBEB4" opacity="0.5"/>
+  <line x1="140" y1="360" x2="660" y2="360" stroke="#8C7D73" stroke-width="1.5" stroke-dasharray="4,6"/>
+  <text x="140" y="140" font-family="Georgia, serif" font-size="14" fill="#84766E" letter-spacing="3">GROWTH</text>
+  <text x="140" y="180" font-family="Georgia, serif" font-size="28" fill="#3D342F" font-weight="normal">Notes on Patience and Becoming</text>
+</svg>

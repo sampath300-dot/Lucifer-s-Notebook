@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
@@ -13,6 +13,20 @@ interface NavbarProps {
 export function Navbar({ websiteName = "A Quiet Space", logoUrl }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Close mobile menu on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Hide public navbar on admin pages
   if (pathname.startsWith('/admin')) {
@@ -39,23 +53,23 @@ export function Navbar({ websiteName = "A Quiet Space", logoUrl }: NavbarProps) 
           {/* Logo / Brand Name */}
           <Link
             href="/"
-            className="flex items-center gap-3 text-lg sm:text-xl font-serif tracking-tight text-[var(--theme-text)] hover:opacity-80 transition-opacity"
+            className="flex items-center gap-2.5 text-base sm:text-lg font-serif tracking-tight text-[var(--theme-text)] hover:opacity-75 transition-opacity py-2"
           >
             {logoUrl && (
-              <img src={logoUrl} alt="" className="h-7 w-7 object-contain rounded" />
+              <img src={logoUrl} alt="" className="h-6 w-6 object-contain rounded" />
             )}
             <span>{websiteName}</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
+          <nav className="hidden md:flex items-center gap-8 text-xs uppercase tracking-wider font-medium">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={`transition-colors py-1 relative ${
                   isActive(link.href)
-                    ? 'text-[var(--theme-text)] font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--theme-accent)]'
+                    ? 'text-[var(--theme-text)] font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[1.5px] after:bg-[var(--theme-accent)]'
                     : 'text-[var(--theme-secondary)] hover:text-[var(--theme-text)]'
                 }`}
               >
@@ -64,26 +78,26 @@ export function Navbar({ websiteName = "A Quiet Space", logoUrl }: NavbarProps) 
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - 44x44 touch target */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle navigation menu"
-            className="md:hidden p-2 rounded-md text-[var(--theme-secondary)] hover:text-[var(--theme-text)] hover:bg-[var(--theme-card)] transition-colors cursor-pointer"
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            className="md:hidden min-h-[44px] min-w-[44px] flex items-center justify-center -mr-2 text-[var(--theme-text)] hover:opacity-70 transition-opacity cursor-pointer"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
 
-        {/* Mobile Dropdown */}
+        {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-[var(--theme-border)] py-4 space-y-2 bg-[var(--theme-bg)]">
+          <div className="md:hidden border-t border-[var(--theme-border)]/70 py-4 px-1 space-y-1 bg-[var(--theme-bg)] animate-in fade-in duration-150">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`block px-3 py-2 rounded-md text-base transition-colors ${
+                className={`block px-3 py-3 rounded text-base transition-colors min-h-[44px] flex items-center ${
                   isActive(link.href)
                     ? 'bg-[var(--theme-card)] text-[var(--theme-text)] font-medium border-l-2 border-[var(--theme-accent)]'
                     : 'text-[var(--theme-secondary)] hover:text-[var(--theme-text)] hover:bg-[var(--theme-card)]/50'

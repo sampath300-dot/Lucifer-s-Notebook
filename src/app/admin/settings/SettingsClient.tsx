@@ -102,11 +102,11 @@ export function SettingsClient({ initialSettings }: SettingsClientProps) {
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-[var(--theme-border)]">
+      <div className="flex overflow-x-auto no-scrollbar border-b border-[var(--theme-border)]">
         <button
           type="button"
           onClick={() => setActiveTab('home')}
-          className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer ${
+          className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer shrink-0 min-h-[40px] ${
             activeTab === 'home'
               ? 'border-[var(--theme-accent)] text-[var(--theme-accent)]'
               : 'border-transparent text-[var(--theme-secondary)] hover:text-[var(--theme-text)]'
@@ -119,7 +119,7 @@ export function SettingsClient({ initialSettings }: SettingsClientProps) {
         <button
           type="button"
           onClick={() => setActiveTab('identity')}
-          className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer ${
+          className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer shrink-0 min-h-[40px] ${
             activeTab === 'identity'
               ? 'border-[var(--theme-accent)] text-[var(--theme-accent)]'
               : 'border-transparent text-[var(--theme-secondary)] hover:text-[var(--theme-text)]'
@@ -132,7 +132,7 @@ export function SettingsClient({ initialSettings }: SettingsClientProps) {
         <button
           type="button"
           onClick={() => setActiveTab('contact')}
-          className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer ${
+          className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer shrink-0 min-h-[40px] ${
             activeTab === 'contact'
               ? 'border-[var(--theme-accent)] text-[var(--theme-accent)]'
               : 'border-transparent text-[var(--theme-secondary)] hover:text-[var(--theme-text)]'
@@ -145,7 +145,7 @@ export function SettingsClient({ initialSettings }: SettingsClientProps) {
         <button
           type="button"
           onClick={() => setActiveTab('seo')}
-          className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer ${
+          className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer shrink-0 min-h-[40px] ${
             activeTab === 'seo'
               ? 'border-[var(--theme-accent)] text-[var(--theme-accent)]'
               : 'border-transparent text-[var(--theme-secondary)] hover:text-[var(--theme-text)]'

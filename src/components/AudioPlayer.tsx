@@ -141,23 +141,23 @@ export function AudioPlayer({ src, title, duration: initialDuration, className =
 
   return (
     <div
-      className={`rounded-lg border border-[var(--theme-border)] bg-[var(--theme-card)] p-4 sm:p-5 transition-all ${className}`}
+      className={`rounded-lg border border-[var(--theme-border)] bg-[var(--theme-card)] p-3.5 sm:p-5 transition-all shadow-none select-none ${className}`}
       role="region"
       aria-label={title ? `Audio player: ${title}` : 'Audio player'}
     >
       <audio ref={audioRef} src={src} preload="metadata" />
 
       {title && (
-        <div className="mb-3">
-          <p className="font-serif text-base sm:text-lg font-medium text-[var(--theme-text)]">
+        <div className="mb-2 sm:mb-3">
+          <p className="font-serif text-sm sm:text-base font-medium text-[var(--theme-text)] leading-snug">
             {title}
           </p>
         </div>
       )}
 
-      {/* Scrubber Progress Bar */}
-      <div className="space-y-1.5 mb-4">
-        <div className="relative flex items-center">
+      {/* Scrubber Progress Bar with comfortable touch target */}
+      <div className="space-y-1 mb-3 sm:mb-4">
+        <div className="relative py-1 flex items-center touch-none">
           <input
             type="range"
             min="0"
@@ -170,32 +170,32 @@ export function AudioPlayer({ src, title, duration: initialDuration, className =
             onMouseUp={handleSeekCommit}
             onTouchEnd={handleSeekCommit}
             aria-label="Seek audio"
-            className="w-full h-1.5 rounded-full appearance-none cursor-pointer bg-[var(--theme-border)] focus:outline-none focus:ring-1 focus:ring-[var(--theme-accent)]"
+            className="w-full h-1 sm:h-1.5 rounded-full appearance-none cursor-pointer bg-[var(--theme-border)] focus:outline-none"
             style={{
               background: `linear-gradient(to right, var(--theme-accent) ${progressPercent}%, var(--theme-border) ${progressPercent}%)`,
             }}
           />
         </div>
-        <div className="flex justify-between items-center text-xs text-[var(--theme-secondary)] tabular-nums">
+        <div className="flex justify-between items-center text-[11px] text-[var(--theme-secondary)] tabular-nums">
           <span>{formatTime(currentTime)}</span>
           <span>{displayDuration}</span>
         </div>
       </div>
 
       {/* Control Buttons Bar */}
-      <div className="flex items-center justify-between gap-2 pt-1">
+      <div className="flex items-center justify-between gap-1 pt-0.5">
         {/* Left: Playback controls */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-2.5">
           <button
             type="button"
             onClick={togglePlay}
             aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
-            className="h-10 w-10 sm:h-11 sm:w-11 rounded-full flex items-center justify-center bg-[var(--theme-accent)] text-white hover:opacity-90 active:scale-95 transition-all shadow-xs cursor-pointer"
+            className="min-h-[42px] min-w-[42px] sm:h-10 sm:w-10 rounded-full flex items-center justify-center bg-[var(--theme-accent)] text-white hover:opacity-90 active:scale-95 transition-all cursor-pointer shrink-0"
           >
             {isPlaying ? (
-              <Pause className="h-4 w-4 sm:h-5 sm:w-5 fill-current" />
+              <Pause className="h-4 w-4 fill-current" />
             ) : (
-              <Play className="h-4 w-4 sm:h-5 sm:w-5 ml-0.5 fill-current" />
+              <Play className="h-4 w-4 ml-0.5 fill-current" />
             )}
           </button>
 
@@ -204,9 +204,9 @@ export function AudioPlayer({ src, title, duration: initialDuration, className =
             onClick={() => skip(-10)}
             title="Rewind 10 seconds"
             aria-label="Rewind 10 seconds"
-            className="p-2 rounded-md text-[var(--theme-secondary)] hover:text-[var(--theme-text)] hover:bg-[var(--theme-bg)] transition-colors cursor-pointer"
+            className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded text-[var(--theme-secondary)] hover:text-[var(--theme-text)] transition-colors cursor-pointer"
           >
-            <RotateCcw className="h-4 w-4" />
+            <RotateCcw className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </button>
 
           <button
@@ -214,36 +214,37 @@ export function AudioPlayer({ src, title, duration: initialDuration, className =
             onClick={() => skip(10)}
             title="Forward 10 seconds"
             aria-label="Forward 10 seconds"
-            className="p-2 rounded-md text-[var(--theme-secondary)] hover:text-[var(--theme-text)] hover:bg-[var(--theme-bg)] transition-colors cursor-pointer"
+            className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded text-[var(--theme-secondary)] hover:text-[var(--theme-text)] transition-colors cursor-pointer"
           >
-            <RotateCw className="h-4 w-4" />
+            <RotateCw className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </button>
         </div>
 
         {/* Right: Speed & Volume */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-2.5">
           <button
             type="button"
             onClick={cyclePlaybackRate}
             aria-label={`Playback speed: ${playbackRate}x`}
-            className="px-2 py-1 text-xs font-medium rounded border border-[var(--theme-border)] text-[var(--theme-secondary)] hover:text-[var(--theme-text)] hover:bg-[var(--theme-bg)] transition-colors cursor-pointer"
+            className="min-h-[36px] px-2 text-[11px] font-medium rounded border border-[var(--theme-border)] text-[var(--theme-secondary)] hover:text-[var(--theme-text)] transition-colors cursor-pointer flex items-center justify-center"
           >
             {playbackRate}x
           </button>
 
-          <div className="hidden sm:flex items-center gap-2">
-            <button
-              type="button"
-              onClick={toggleMute}
-              aria-label={isMuted ? 'Unmute' : 'Mute'}
-              className="p-1.5 text-[var(--theme-secondary)] hover:text-[var(--theme-text)] cursor-pointer"
-            >
-              {isMuted || volume === 0 ? (
-                <VolumeX className="h-4 w-4" />
-              ) : (
-                <Volume2 className="h-4 w-4" />
-              )}
-            </button>
+          <button
+            type="button"
+            onClick={toggleMute}
+            aria-label={isMuted ? 'Unmute' : 'Mute'}
+            className="min-h-[36px] min-w-[36px] flex items-center justify-center text-[var(--theme-secondary)] hover:text-[var(--theme-text)] cursor-pointer"
+          >
+            {isMuted || volume === 0 ? (
+              <VolumeX className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            ) : (
+              <Volume2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            )}
+          </button>
+
+          <div className="hidden md:flex items-center">
             <input
               type="range"
               min="0"
@@ -252,7 +253,7 @@ export function AudioPlayer({ src, title, duration: initialDuration, className =
               value={isMuted ? 0 : volume}
               onChange={handleVolumeChange}
               aria-label="Volume slider"
-              className="w-16 h-1 rounded-full appearance-none cursor-pointer bg-[var(--theme-border)]"
+              className="w-14 h-1 rounded-full appearance-none cursor-pointer bg-[var(--theme-border)]"
             />
           </div>
         </div>

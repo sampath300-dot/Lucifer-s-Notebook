@@ -28,19 +28,19 @@ export function ThoughtsArchiveClient({ initialThoughts }: ThoughtsArchiveClient
   });
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-8 sm:space-y-10">
       {/* Search and Category Filters */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
-        {/* Categories */}
-        <div className="flex flex-wrap gap-2">
+      <div className="flex flex-col sm:flex-row gap-3.5 justify-between items-stretch sm:items-center">
+        {/* Categories with mobile swipeable scroll */}
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 pb-1 sm:pb-0 shrink-0">
           {categories.map((cat) => (
             <button
               key={cat}
               type="button"
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1 rounded-full text-xs font-medium transition-colors cursor-pointer ${
+              className={`min-h-[36px] px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors cursor-pointer shrink-0 ${
                 selectedCategory === cat
-                  ? 'bg-[var(--theme-accent)] text-white'
+                  ? 'bg-[var(--theme-accent)] text-white shadow-none'
                   : 'bg-[var(--theme-card)] border border-[var(--theme-border)] text-[var(--theme-secondary)] hover:text-[var(--theme-text)]'
               }`}
             >
@@ -50,22 +50,22 @@ export function ThoughtsArchiveClient({ initialThoughts }: ThoughtsArchiveClient
         </div>
 
         {/* Search Input */}
-        <div className="relative w-full sm:w-64">
+        <div className="relative w-full sm:w-60 shrink-0">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-[var(--theme-secondary)]" />
           <input
             type="text"
             placeholder="Search thoughts..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-3 py-1.5 text-xs sm:text-sm bg-[var(--theme-card)] border border-[var(--theme-border)] rounded-md text-[var(--theme-text)] placeholder-[var(--theme-secondary)]/70 focus:outline-none focus:ring-1 focus:ring-[var(--theme-accent)]"
+            className="w-full pl-9 pr-3 py-2 text-sm bg-[var(--theme-card)] border border-[var(--theme-border)] rounded-md text-[var(--theme-text)] placeholder-[var(--theme-secondary)]/70 focus:outline-none focus:ring-1 focus:ring-[var(--theme-accent)]"
           />
         </div>
       </div>
 
       {/* List of Thoughts */}
       {filteredThoughts.length === 0 ? (
-        <div className="py-16 text-center text-[var(--theme-secondary)] border border-dashed border-[var(--theme-border)] rounded-lg">
-          <p className="font-serif text-lg">No reflections match your search.</p>
+        <div className="py-14 text-center text-[var(--theme-secondary)] border border-dashed border-[var(--theme-border)] rounded-lg">
+          <p className="font-serif text-base sm:text-lg">No reflections match your search.</p>
           <button
             type="button"
             onClick={() => {
@@ -78,7 +78,7 @@ export function ThoughtsArchiveClient({ initialThoughts }: ThoughtsArchiveClient
           </button>
         </div>
       ) : (
-        <div className="space-y-12 divide-y divide-[var(--theme-border)]/70">
+        <div className="space-y-10 sm:space-y-12 divide-y divide-[var(--theme-border)]/60">
           {filteredThoughts.map((thought, idx) => {
             const dateStr = new Date(thought.published_at).toLocaleDateString('en-US', {
               month: 'short',
@@ -93,12 +93,12 @@ export function ThoughtsArchiveClient({ initialThoughts }: ThoughtsArchiveClient
             return (
               <article
                 key={thought.id}
-                className={`group ${idx > 0 ? 'pt-12' : ''} flex flex-col md:flex-row gap-6 md:gap-8 items-start`}
+                className={`group ${idx > 0 ? 'pt-10 sm:pt-12' : ''} flex flex-col md:flex-row gap-5 md:gap-8 items-start`}
               >
                 {thought.cover_image && (
                   <Link
                     href={`/thoughts/${thought.slug}`}
-                    className="w-full md:w-60 shrink-0 aspect-16/10 rounded-md overflow-hidden border border-[var(--theme-border)] bg-[var(--theme-card)]"
+                    className="w-full md:w-56 shrink-0 aspect-16/10 rounded-md overflow-hidden border border-[var(--theme-border)] bg-[var(--theme-card)]"
                   >
                     <img
                       src={thought.cover_image}
@@ -108,8 +108,8 @@ export function ThoughtsArchiveClient({ initialThoughts }: ThoughtsArchiveClient
                   </Link>
                 )}
 
-                <div className="flex-1 space-y-3">
-                  <div className="flex items-center gap-3 text-xs text-[var(--theme-secondary)]">
+                <div className="flex-1 space-y-2.5">
+                  <div className="flex items-center gap-2.5 text-xs text-[var(--theme-secondary)]">
                     <time dateTime={thought.published_at}>{dateStr}</time>
                     <span>•</span>
                     <span>{readMinutes} min read</span>
@@ -117,20 +117,20 @@ export function ThoughtsArchiveClient({ initialThoughts }: ThoughtsArchiveClient
                     <span className="font-medium text-[var(--theme-accent)]">{thought.category}</span>
                   </div>
 
-                  <h2 className="font-serif text-2xl sm:text-3xl font-medium text-[var(--theme-text)] group-hover:text-[var(--theme-accent)] transition-colors leading-snug">
+                  <h2 className="font-serif text-xl sm:text-2xl font-medium text-[var(--theme-text)] group-hover:text-[var(--theme-accent)] transition-colors leading-snug">
                     <Link href={`/thoughts/${thought.slug}`}>
                       {thought.title}
                     </Link>
                   </h2>
 
-                  <p className="text-base text-[var(--theme-secondary)] leading-relaxed">
+                  <p className="text-sm sm:text-base text-[var(--theme-secondary)] leading-relaxed line-clamp-3">
                     {thought.excerpt}
                   </p>
 
-                  <div className="pt-2 flex items-center justify-between">
+                  <div className="pt-1.5 flex items-center justify-between">
                     <Link
                       href={`/thoughts/${thought.slug}`}
-                      className="text-xs sm:text-sm font-medium text-[var(--theme-text)] hover:text-[var(--theme-accent)] inline-flex items-center gap-1.5 transition-colors"
+                      className="text-xs sm:text-sm font-medium text-[var(--theme-text)] hover:text-[var(--theme-accent)] inline-flex items-center gap-1.5 transition-colors py-1"
                     >
                       <span>Read article</span>
                       <ArrowRight className="h-3.5 w-3.5" />

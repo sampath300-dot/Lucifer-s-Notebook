@@ -177,11 +177,11 @@ export function AppearanceClient({ initialAppearance }: AppearanceClientProps) {
         {/* LEFT COLUMN: Controls (7 cols) */}
         <div className="lg:col-span-7 space-y-6">
           {/* Navigation Tabs */}
-          <div className="flex border-b border-[var(--theme-border)]">
+          <div className="flex overflow-x-auto no-scrollbar border-b border-[var(--theme-border)]">
             <button
               type="button"
               onClick={() => setActiveTab('presets')}
-              className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer ${
+              className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer shrink-0 min-h-[40px] ${
                 activeTab === 'presets'
                   ? 'border-[var(--theme-accent)] text-[var(--theme-accent)]'
                   : 'border-transparent text-[var(--theme-secondary)] hover:text-[var(--theme-text)]'
@@ -193,7 +193,7 @@ export function AppearanceClient({ initialAppearance }: AppearanceClientProps) {
             <button
               type="button"
               onClick={() => setActiveTab('colors')}
-              className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer ${
+              className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer shrink-0 min-h-[40px] ${
                 activeTab === 'colors'
                   ? 'border-[var(--theme-accent)] text-[var(--theme-accent)]'
                   : 'border-transparent text-[var(--theme-secondary)] hover:text-[var(--theme-text)]'
@@ -205,7 +205,7 @@ export function AppearanceClient({ initialAppearance }: AppearanceClientProps) {
             <button
               type="button"
               onClick={() => setActiveTab('typography')}
-              className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer ${
+              className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer shrink-0 min-h-[40px] ${
                 activeTab === 'typography'
                   ? 'border-[var(--theme-accent)] text-[var(--theme-accent)]'
                   : 'border-transparent text-[var(--theme-secondary)] hover:text-[var(--theme-text)]'
@@ -217,7 +217,7 @@ export function AppearanceClient({ initialAppearance }: AppearanceClientProps) {
             <button
               type="button"
               onClick={() => setActiveTab('layout')}
-              className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer ${
+              className={`flex items-center gap-1.5 py-2.5 px-4 text-xs font-medium border-b-2 transition-colors cursor-pointer shrink-0 min-h-[40px] ${
                 activeTab === 'layout'
                   ? 'border-[var(--theme-accent)] text-[var(--theme-accent)]'
                   : 'border-transparent text-[var(--theme-secondary)] hover:text-[var(--theme-text)]'

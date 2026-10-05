@@ -133,7 +133,7 @@ async function runTests() {
     headers: { 'Content-Type': 'application/json', Cookie: cookieHeader },
     body: JSON.stringify({
       title: 'The Architecture of Gentle Days',
-      slug: 'the-architecture-of-gentle-days',
+      slug: `the-architecture-of-gentle-days-${Date.now()}`,
       excerpt: 'How we protect the hours that allow us to reflect.',
       content: '<h2>Slow Mornings</h2><p>When you start without rushing, the whole day carries a different quality.</p>',
       category: 'Solitude',

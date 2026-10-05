@@ -65,20 +65,20 @@ export default function TalkPage() {
   };
 
   return (
-    <div className="w-full py-12 sm:py-20">
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="w-full py-10 sm:py-20">
+      <div className="max-w-2xl mx-auto px-5 sm:px-6 lg:px-8">
         {/* Page Header */}
-        <div className="border-b border-[var(--theme-border)] pb-8 mb-10 text-left">
+        <div className="border-b border-[var(--theme-border)]/60 pb-6 sm:pb-8 mb-8 sm:mb-10 text-left">
           <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[var(--theme-text)]">
             Let&apos;s talk
           </h1>
-          <p className="mt-3 text-base sm:text-lg text-[var(--theme-secondary)] leading-relaxed">
+          <p className="mt-2.5 sm:mt-3 text-sm sm:text-base lg:text-lg text-[var(--theme-secondary)] leading-relaxed">
             If there&apos;s something you&apos;re struggling with, thinking about, or simply want to talk through, you can tell me about it here.
           </p>
         </div>
 
         {submitted ? (
-          <div className="p-8 sm:p-12 rounded-xl border border-[var(--theme-border)] bg-[var(--theme-card)] text-center space-y-5 animate-in fade-in duration-300">
+          <div className="p-7 sm:p-12 rounded-xl border border-[var(--theme-border)] bg-[var(--theme-card)] text-center space-y-4 sm:space-y-5 animate-in fade-in duration-300">
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[var(--theme-accent)]/15 text-[var(--theme-accent)]">
               <CheckCircle2 className="h-6 w-6" />
             </div>
@@ -88,7 +88,7 @@ export default function TalkPage() {
             <p className="text-sm sm:text-base text-[var(--theme-secondary)] max-w-md mx-auto leading-relaxed">
               I have received your note and will get back to you soon through your preferred contact method ({contactMethod}).
             </p>
-            <div className="pt-4">
+            <div className="pt-3">
               <button
                 type="button"
                 onClick={() => {
@@ -98,14 +98,14 @@ export default function TalkPage() {
                   setContactInfo('');
                   setAdditionalContext('');
                 }}
-                className="text-xs font-medium text-[var(--theme-accent)] underline cursor-pointer"
+                className="text-xs font-medium text-[var(--theme-accent)] underline cursor-pointer py-2"
               >
                 Send another message
               </button>
             </div>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-8" noValidate>
+          <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8" noValidate>
             {/* Honeypot hidden input */}
             <input
               type="text"
@@ -118,14 +118,14 @@ export default function TalkPage() {
             />
 
             {error && (
-              <div className="p-4 rounded-md border border-red-200 bg-red-50 text-xs sm:text-sm text-red-800">
+              <div className="p-3.5 rounded-md border border-red-200 bg-red-50 text-xs sm:text-sm text-red-800">
                 {error}
               </div>
             )}
 
             {/* Field 1: Name / preferred name */}
-            <div className="space-y-2">
-              <label htmlFor="name" className="block text-sm font-medium text-[var(--theme-text)]">
+            <div className="space-y-1.5">
+              <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-[var(--theme-text)]">
                 Name / preferred name <span className="text-[var(--theme-accent)]">*</span>
               </label>
               <input
@@ -135,37 +135,37 @@ export default function TalkPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="What would you like me to call you?"
-                className="w-full px-4 py-2.5 rounded-md border border-[var(--theme-border)] bg-[var(--theme-card)] text-[var(--theme-text)] placeholder-[var(--theme-secondary)]/60 text-sm sm:text-base focus:outline-none focus:ring-1 focus:ring-[var(--theme-accent)] transition-shadow"
+                className="w-full px-3.5 py-3 rounded-md border border-[var(--theme-border)] bg-[var(--theme-card)] text-[var(--theme-text)] placeholder-[var(--theme-secondary)]/50 text-base focus:outline-none focus:ring-1 focus:ring-[var(--theme-accent)] transition-shadow"
               />
             </div>
 
             {/* Field 2: What would you like to talk about? */}
-            <div className="space-y-2">
-              <label htmlFor="content" className="block text-sm font-medium text-[var(--theme-text)]">
+            <div className="space-y-1.5">
+              <label htmlFor="content" className="block text-xs sm:text-sm font-medium text-[var(--theme-text)]">
                 What would you like to talk about? <span className="text-[var(--theme-accent)]">*</span>
               </label>
               <textarea
                 id="content"
-                rows={6}
+                rows={5}
                 required
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 placeholder="Tell me what's on your mind..."
-                className="w-full px-4 py-3 rounded-md border border-[var(--theme-border)] bg-[var(--theme-card)] text-[var(--theme-text)] placeholder-[var(--theme-secondary)]/60 text-sm sm:text-base focus:outline-none focus:ring-1 focus:ring-[var(--theme-accent)] transition-shadow resize-y"
+                className="w-full px-3.5 py-3 rounded-md border border-[var(--theme-border)] bg-[var(--theme-card)] text-[var(--theme-text)] placeholder-[var(--theme-secondary)]/50 text-base focus:outline-none focus:ring-1 focus:ring-[var(--theme-accent)] transition-shadow resize-y"
               />
             </div>
 
             {/* Field 3: Preferred format */}
-            <div className="space-y-2.5">
-              <span className="block text-sm font-medium text-[var(--theme-text)]">
+            <div className="space-y-2">
+              <span className="block text-xs sm:text-sm font-medium text-[var(--theme-text)]">
                 Preferred format
               </span>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              <div className="grid grid-cols-3 gap-2">
                 {(
                   [
                     { id: 'Chat', label: 'Chat', icon: MessageSquare },
                     { id: 'Voice call', label: 'Voice call', icon: PhoneCall },
-                    { id: 'Not sure yet', label: 'Not sure yet', icon: HelpCircle },
+                    { id: 'Not sure yet', label: 'Not sure', icon: HelpCircle },
                   ] as const
                 ).map((fmt) => {
                   const Icon = fmt.icon;
@@ -175,14 +175,14 @@ export default function TalkPage() {
                       key={fmt.id}
                       type="button"
                       onClick={() => setPreferredFormat(fmt.id)}
-                      className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-md border text-xs sm:text-sm font-medium transition-all cursor-pointer ${
+                      className={`flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 px-2 py-3 rounded-md border text-xs sm:text-sm font-medium transition-all cursor-pointer min-h-[46px] ${
                         isSelected
-                          ? 'border-[var(--theme-accent)] bg-[var(--theme-accent)] text-white shadow-xs'
+                          ? 'border-[var(--theme-accent)] bg-[var(--theme-accent)] text-white shadow-none'
                           : 'border-[var(--theme-border)] bg-[var(--theme-card)] text-[var(--theme-secondary)] hover:text-[var(--theme-text)] hover:bg-[var(--theme-bg)]'
                       }`}
                     >
-                      <Icon className="h-4 w-4" />
-                      <span>{fmt.label}</span>
+                      <Icon className="h-4 w-4 shrink-0" />
+                      <span className="text-center">{fmt.label}</span>
                     </button>
                   );
                 })}
@@ -190,11 +190,11 @@ export default function TalkPage() {
             </div>
 
             {/* Field 4: Preferred contact method */}
-            <div className="space-y-2.5">
-              <span className="block text-sm font-medium text-[var(--theme-text)]">
+            <div className="space-y-2">
+              <span className="block text-xs sm:text-sm font-medium text-[var(--theme-text)]">
                 Preferred contact method
               </span>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              <div className="grid grid-cols-3 gap-2">
                 {(
                   [
                     { id: 'Email', label: 'Email', icon: Mail },
@@ -209,14 +209,14 @@ export default function TalkPage() {
                       key={method.id}
                       type="button"
                       onClick={() => setContactMethod(method.id)}
-                      className={`flex items-center justify-center gap-2 px-3 py-2.5 rounded-md border text-xs sm:text-sm font-medium transition-all cursor-pointer ${
+                      className={`flex flex-col sm:flex-row items-center justify-center gap-1.5 sm:gap-2 px-2 py-3 rounded-md border text-xs sm:text-sm font-medium transition-all cursor-pointer min-h-[46px] ${
                         isSelected
-                          ? 'border-[var(--theme-accent)] bg-[var(--theme-accent)] text-white shadow-xs'
+                          ? 'border-[var(--theme-accent)] bg-[var(--theme-accent)] text-white shadow-none'
                           : 'border-[var(--theme-border)] bg-[var(--theme-card)] text-[var(--theme-secondary)] hover:text-[var(--theme-text)] hover:bg-[var(--theme-bg)]'
                       }`}
                     >
-                      <Icon className="h-4 w-4" />
-                      <span>{method.label}</span>
+                      <Icon className="h-4 w-4 shrink-0" />
+                      <span className="text-center">{method.label}</span>
                     </button>
                   );
                 })}
@@ -224,8 +224,8 @@ export default function TalkPage() {
             </div>
 
             {/* Field 5: Contact information */}
-            <div className="space-y-2">
-              <label htmlFor="contact_info" className="block text-sm font-medium text-[var(--theme-text)]">
+            <div className="space-y-1.5">
+              <label htmlFor="contact_info" className="block text-xs sm:text-sm font-medium text-[var(--theme-text)]">
                 Contact information <span className="text-[var(--theme-accent)]">*</span>
               </label>
               <input
@@ -241,13 +241,13 @@ export default function TalkPage() {
                     ? 'WhatsApp number with country code'
                     : 'Your phone number'
                 }
-                className="w-full px-4 py-2.5 rounded-md border border-[var(--theme-border)] bg-[var(--theme-card)] text-[var(--theme-text)] placeholder-[var(--theme-secondary)]/60 text-sm sm:text-base focus:outline-none focus:ring-1 focus:ring-[var(--theme-accent)] transition-shadow"
+                className="w-full px-3.5 py-3 rounded-md border border-[var(--theme-border)] bg-[var(--theme-card)] text-[var(--theme-text)] placeholder-[var(--theme-secondary)]/50 text-base focus:outline-none focus:ring-1 focus:ring-[var(--theme-accent)] transition-shadow"
               />
             </div>
 
             {/* Field 6: Optional additional context */}
-            <div className="space-y-2">
-              <label htmlFor="additional_context" className="block text-sm font-medium text-[var(--theme-text)]">
+            <div className="space-y-1.5">
+              <label htmlFor="additional_context" className="block text-xs sm:text-sm font-medium text-[var(--theme-text)]">
                 Optional additional context
               </label>
               <textarea
@@ -256,21 +256,21 @@ export default function TalkPage() {
                 value={additionalContext}
                 onChange={(e) => setAdditionalContext(e.target.value)}
                 placeholder="Anything else you'd like me to know?"
-                className="w-full px-4 py-2.5 rounded-md border border-[var(--theme-border)] bg-[var(--theme-card)] text-[var(--theme-text)] placeholder-[var(--theme-secondary)]/60 text-sm sm:text-base focus:outline-none focus:ring-1 focus:ring-[var(--theme-accent)] transition-shadow resize-y"
+                className="w-full px-3.5 py-2.5 rounded-md border border-[var(--theme-border)] bg-[var(--theme-card)] text-[var(--theme-text)] placeholder-[var(--theme-secondary)]/50 text-base focus:outline-none focus:ring-1 focus:ring-[var(--theme-accent)] transition-shadow resize-y"
               />
             </div>
 
             {/* Gentle comforting helper text */}
-            <p className="font-serif text-sm italic text-[var(--theme-secondary)]">
+            <p className="font-serif text-xs sm:text-sm italic text-[var(--theme-secondary)] leading-relaxed">
               &ldquo;You don&apos;t need to have the right words. Just start wherever feels natural.&rdquo;
             </p>
 
-            {/* Submit button */}
-            <div>
+            {/* Submit button - full width on mobile */}
+            <div className="pt-1">
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 text-sm font-medium bg-[var(--theme-accent)] text-white rounded-md hover:opacity-90 disabled:opacity-50 transition-all cursor-pointer shadow-xs"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 sm:py-3 text-sm font-medium bg-[var(--theme-accent)] text-white rounded-md hover:opacity-90 active:scale-[0.99] disabled:opacity-50 transition-all cursor-pointer shadow-none min-h-[48px]"
               >
                 <Send className="mr-2 h-4 w-4" />
                 <span>{submitting ? 'Sending...' : 'Send message'}</span>

@@ -138,7 +138,7 @@ export function AudioManagerClient({ initialAudio }: AudioManagerClientProps) {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex items-center gap-2 self-end sm:self-center shrink-0">
+                    <div className="flex items-center gap-2 self-start sm:self-center shrink-0 pt-1 sm:pt-0">
                       <button
                         type="button"
                         onClick={() => handleToggleStatus(item)}

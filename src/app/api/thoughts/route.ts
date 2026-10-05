@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getThoughts, createThought } from '@/lib/db';
+import { getThoughts, createThought, getThoughtBySlug } from '@/lib/db';
 import { getCurrentUser } from '@/lib/auth';
 
 function slugify(text: string): string {
@@ -50,6 +50,11 @@ export async function POST(request: Request) {
     let slug = data.slug ? slugify(data.slug) : slugify(data.title);
     if (!slug) {
       slug = 'thought-' + Date.now();
+    } else {
+      const existing = getThoughtBySlug(slug, true);
+      if (existing) {
+        slug = `${slug}-${Date.now().toString().slice(-5)}`;
+      }
     }
 
     const newThought = createThought({

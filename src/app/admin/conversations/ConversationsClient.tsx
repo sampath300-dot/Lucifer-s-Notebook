@@ -206,7 +206,7 @@ export function ConversationsClient({ initialConversations }: ConversationsClien
                   </div>
 
                   {/* Quick status selector */}
-                  <div className="flex items-center gap-2 self-end sm:self-center shrink-0" onClick={(e) => e.stopPropagation()}>
+                  <div className="flex items-center gap-2 self-start sm:self-center shrink-0 pt-1 sm:pt-0" onClick={(e) => e.stopPropagation()}>
                     <select
                       value={c.status}
                       onChange={(e) => handleUpdateStatus(c.id, e.target.value as ConversationStatus)}

@@ -55,18 +55,19 @@ export function AdminNav() {
   };
 
   return (
-    <aside className="w-full md:w-64 md:min-h-screen shrink-0 bg-[var(--theme-card)] border-r border-[var(--theme-border)] flex flex-col justify-between">
+    <aside className="w-full md:w-60 md:min-h-screen shrink-0 bg-[var(--theme-card)] border-r border-[var(--theme-border)]/70 flex flex-col justify-between">
       <div>
         {/* Admin Header */}
-        <div className="h-16 px-6 border-b border-[var(--theme-border)] flex items-center justify-between">
-          <Link href="/admin" className="font-serif text-lg font-medium text-[var(--theme-text)]">
+        <div className="h-16 px-5 border-b border-[var(--theme-border)]/70 flex items-center justify-between">
+          <Link href="/admin" className="font-serif text-base font-medium text-[var(--theme-text)]">
             Admin CMS
           </Link>
 
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-1.5 rounded text-[var(--theme-secondary)] hover:text-[var(--theme-text)]"
+            aria-label={mobileMenuOpen ? 'Close navigation' : 'Open navigation'}
+            className="md:hidden min-h-[44px] min-w-[44px] flex items-center justify-center -mr-2 text-[var(--theme-secondary)] hover:text-[var(--theme-text)]"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -74,7 +75,7 @@ export function AdminNav() {
 
         {/* Navigation Links */}
         <nav
-          className={`p-4 space-y-1 ${
+          className={`p-3 space-y-1 ${
             mobileMenuOpen ? 'block' : 'hidden md:block'
           }`}
         >
@@ -86,9 +87,9 @@ export function AdminNav() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-md text-xs font-medium min-h-[42px] transition-colors ${
                   active
-                    ? 'bg-[var(--theme-accent)] text-white shadow-xs'
+                    ? 'bg-[var(--theme-accent)] text-white shadow-none'
                     : 'text-[var(--theme-secondary)] hover:text-[var(--theme-text)] hover:bg-[var(--theme-bg)]'
                 }`}
               >
@@ -102,14 +103,14 @@ export function AdminNav() {
 
       {/* Bottom Footer Actions */}
       <div
-        className={`p-4 border-t border-[var(--theme-border)] space-y-2 ${
+        className={`p-3 border-t border-[var(--theme-border)]/70 space-y-1.5 ${
           mobileMenuOpen ? 'block' : 'hidden md:block'
         }`}
       >
         <Link
           href="/"
           target="_blank"
-          className="flex items-center justify-between px-3 py-2 text-xs text-[var(--theme-secondary)] hover:text-[var(--theme-text)] rounded hover:bg-[var(--theme-bg)] transition-colors"
+          className="flex items-center justify-between px-3 py-2 text-xs text-[var(--theme-secondary)] hover:text-[var(--theme-text)] rounded hover:bg-[var(--theme-bg)] transition-colors min-h-[38px]"
         >
           <span>View Public Site</span>
           <ExternalLink className="h-3.5 w-3.5" />
@@ -119,7 +120,7 @@ export function AdminNav() {
           type="button"
           onClick={handleLogout}
           disabled={loggingOut}
-          className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20 rounded transition-colors cursor-pointer"
+          className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-950/20 rounded transition-colors cursor-pointer min-h-[38px]"
         >
           <LogOut className="h-3.5 w-3.5" />
           <span>{loggingOut ? 'Signing out...' : 'Log Out'}</span>

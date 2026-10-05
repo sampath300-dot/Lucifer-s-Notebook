@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: quiet_space_web
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - SESSION_SECRET=${SESSION_SECRET:-change_this_to_a_secure_random_key_in_production}
+      - PORT=3000
+    volumes:
+      # Persist SQLite database and uploaded audio/image files across deployments
+      - ./data:/app/data
+      - ./public/uploads:/app/public/uploads

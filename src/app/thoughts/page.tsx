@@ -12,13 +12,13 @@ export default async function ThoughtsPage() {
 
   return (
     <div className="w-full py-12 sm:py-20">
-      <div className="max-w-6xl xl:max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div className="max-w-[1440px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
         {/* Page Header */}
-        <div className="border-b border-[var(--theme-border)] pb-8 mb-10">
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[var(--theme-text)]">
+        <div className="border-b border-[var(--theme-border)] pb-8 mb-10 sm:mb-12">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[var(--theme-text)]">
             Thoughts
           </h1>
-          <p className="mt-3 text-base sm:text-lg text-[var(--theme-secondary)] max-w-2xl leading-relaxed">
+          <p className="mt-3 text-lg sm:text-xl text-[var(--theme-secondary)] max-w-3xl leading-relaxed">
             Things I&apos;ve been thinking about, learning from, and trying to understand.
           </p>
         </div>

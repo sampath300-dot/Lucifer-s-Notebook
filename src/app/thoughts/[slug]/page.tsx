@@ -82,12 +82,12 @@ export default async function IndividualThoughtPage({
             </div>
           </div>
 
-          <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[var(--theme-text)] leading-[1.25]">
+          <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[var(--theme-text)] leading-[1.2]">
             {thought.title}
           </h1>
 
           {thought.excerpt && (
-            <p className="font-serif text-base sm:text-lg lg:text-xl text-[var(--theme-secondary)] italic leading-relaxed pt-0.5">
+            <p className="font-serif text-lg sm:text-xl lg:text-2xl text-[var(--theme-secondary)] italic leading-relaxed pt-1">
               {thought.excerpt}
             </p>
           )}
@@ -95,11 +95,11 @@ export default async function IndividualThoughtPage({
 
         {/* Cover Image if present */}
         {thought.cover_image && (
-          <div className="my-6 sm:my-8 rounded-lg overflow-hidden border border-[var(--theme-border)]/80">
+          <div className="my-8 sm:my-10 rounded-2xl overflow-hidden border border-[var(--theme-border)]/80 shadow-xs">
             <img
               src={thought.cover_image}
               alt={thought.title}
-              className="w-full h-auto max-h-[460px] object-cover"
+              className="w-full h-auto max-h-[560px] object-cover"
             />
           </div>
         )}

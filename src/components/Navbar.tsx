@@ -48,15 +48,15 @@ export function Navbar({ websiteName = "A Quiet Space", logoUrl }: NavbarProps) 
 
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-[var(--theme-bg)]/90 border-b border-[var(--theme-border)]/60 transition-colors">
-      <div className="max-w-6xl xl:max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div className="max-w-[1440px] 2xl:max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
         <div className="flex h-16 sm:h-20 items-center justify-between">
           {/* Logo / Brand Name */}
           <Link
             href="/"
-            className="flex items-center gap-2.5 text-base sm:text-lg font-serif tracking-tight text-[var(--theme-text)] hover:opacity-75 transition-opacity py-2"
+            className="flex items-center gap-3 text-lg sm:text-xl font-serif font-medium tracking-tight text-[var(--theme-text)] hover:opacity-75 transition-opacity py-2"
           >
             {logoUrl && (
-              <img src={logoUrl} alt="" className="h-6 w-6 object-contain rounded" />
+              <img src={logoUrl} alt="" className="h-7 w-7 object-contain rounded" />
             )}
             <span>{websiteName}</span>
           </Link>

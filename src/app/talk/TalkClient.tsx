@@ -73,14 +73,14 @@ export function TalkClient({ whatsappNumber = "+91 73853 14784", email }: TalkCl
   };
 
   return (
-    <div className="w-full py-10 sm:py-20">
-      <div className="max-w-3xl lg:max-w-4xl mx-auto px-5 sm:px-8 lg:px-12">
+    <div className="w-full py-12 sm:py-24">
+      <div className="max-w-4xl xl:max-w-5xl mx-auto px-4 sm:px-8 lg:px-12">
         {/* Page Header */}
-        <div className="border-b border-[var(--theme-border)]/60 pb-6 sm:pb-8 mb-8 sm:mb-10 text-left">
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[var(--theme-text)]">
+        <div className="border-b border-[var(--theme-border)]/60 pb-8 mb-10 sm:mb-12 text-left">
+          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[var(--theme-text)]">
             Let&apos;s talk
           </h1>
-          <p className="mt-2.5 sm:mt-3 text-sm sm:text-base lg:text-lg text-[var(--theme-secondary)] leading-relaxed">
+          <p className="mt-3 text-base sm:text-lg lg:text-xl text-[var(--theme-secondary)] leading-relaxed max-w-2xl">
             If there&apos;s something you&apos;re struggling with, thinking about, or simply want to talk through, you can tell me about it here.
           </p>
 

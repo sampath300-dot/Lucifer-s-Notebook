@@ -17,7 +17,7 @@ export default async function AdminThoughtsPage() {
   const thoughts = getThoughts(true); // include drafts
 
   return (
-    <div className="p-6 sm:p-10 max-w-5xl mx-auto w-full space-y-6">
+    <div className="p-6 sm:p-10 max-w-6xl xl:max-w-7xl mx-auto w-full space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--theme-border)] pb-6">
         <div>
           <h1 className="font-serif text-2xl sm:text-3xl font-medium text-[var(--theme-text)]">

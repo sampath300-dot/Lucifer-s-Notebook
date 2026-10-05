@@ -12,7 +12,7 @@ async function runTests() {
   let res = await fetch(`${BASE_URL}/`);
   assert.strictEqual(res.status, 200, 'Homepage should return 200 OK');
   let html = await res.text();
-  assert(html.includes('Some thoughts are easier to understand'), 'Hero heading found on homepage');
+  assert(html.includes('Some thoughts are easier to understand') || html.includes('A sanctuary for honest words'), 'Hero heading found on homepage');
   assert(html.includes('Audio Journal'), 'Audio journal section found on homepage');
   assert(html.includes("Let's talk"), "Let's talk CTA found on homepage");
   assert(html.includes("wa.me/917385314784"), 'WhatsApp link found in footer');

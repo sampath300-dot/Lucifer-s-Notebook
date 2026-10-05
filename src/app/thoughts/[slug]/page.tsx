@@ -52,7 +52,7 @@ export default async function IndividualThoughtPage({
 
   return (
     <div className="w-full py-8 sm:py-16">
-      <div className="max-w-3xl mx-auto px-5 sm:px-6 lg:px-8">
+      <div className="max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
         {/* Back Link */}
         <div className="mb-6 sm:mb-8">
           <Link

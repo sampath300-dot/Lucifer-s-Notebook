@@ -37,7 +37,7 @@ export function Footer({
 
   return (
     <footer className="w-full border-t border-[var(--theme-border)]/70 bg-[var(--theme-bg)] transition-colors mt-auto">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+      <div className="max-w-6xl xl:max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-10 sm:py-16">
         <div className="flex flex-col sm:flex-row items-baseline justify-between gap-6 pb-8 border-b border-[var(--theme-border)]/50">
           <div>
             <h3 className="font-serif text-lg font-medium text-[var(--theme-text)]">

@@ -16,7 +16,7 @@ export default async function AdminDashboardPage() {
   const stats = getDashboardStats();
 
   return (
-    <div className="p-6 sm:p-10 max-w-5xl mx-auto w-full space-y-8">
+    <div className="p-6 sm:p-10 max-w-6xl xl:max-w-7xl mx-auto w-full space-y-8">
       {/* Page Title & Quick Actions */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--theme-border)] pb-6">
         <div>

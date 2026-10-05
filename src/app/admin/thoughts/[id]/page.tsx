@@ -25,7 +25,7 @@ export default async function EditThoughtPage({
   }
 
   return (
-    <div className="p-6 sm:p-10 max-w-5xl mx-auto w-full space-y-6">
+    <div className="p-6 sm:p-10 max-w-6xl xl:max-w-7xl mx-auto w-full space-y-6">
       <div>
         <h1 className="font-serif text-2xl sm:text-3xl font-medium text-[var(--theme-text)]">
           Edit Thought

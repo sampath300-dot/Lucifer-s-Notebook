@@ -12,7 +12,7 @@ export default async function ThoughtsPage() {
 
   return (
     <div className="w-full py-12 sm:py-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl xl:max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
         {/* Page Header */}
         <div className="border-b border-[var(--theme-border)] pb-8 mb-10">
           <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[var(--theme-text)]">

@@ -74,7 +74,7 @@ export function TalkClient({ whatsappNumber = "+91 73853 14784", email }: TalkCl
 
   return (
     <div className="w-full py-10 sm:py-20">
-      <div className="max-w-2xl mx-auto px-5 sm:px-6 lg:px-8">
+      <div className="max-w-3xl lg:max-w-4xl mx-auto px-5 sm:px-8 lg:px-12">
         {/* Page Header */}
         <div className="border-b border-[var(--theme-border)]/60 pb-6 sm:pb-8 mb-8 sm:mb-10 text-left">
           <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-[var(--theme-text)]">

@@ -48,7 +48,7 @@ export function Navbar({ websiteName = "A Quiet Space", logoUrl }: NavbarProps) 
 
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-[var(--theme-bg)]/90 border-b border-[var(--theme-border)]/60 transition-colors">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl xl:max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
         <div className="flex h-16 sm:h-20 items-center justify-between">
           {/* Logo / Brand Name */}
           <Link

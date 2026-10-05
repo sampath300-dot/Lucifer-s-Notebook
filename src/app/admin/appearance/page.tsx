@@ -15,7 +15,7 @@ export default async function AdminAppearancePage() {
   const appearance = getAppearanceSettings();
 
   return (
-    <div className="p-6 sm:p-10 max-w-6xl mx-auto w-full space-y-6">
+    <div className="p-6 sm:p-10 max-w-6xl xl:max-w-7xl mx-auto w-full space-y-6">
       <AppearanceClient initialAppearance={appearance} />
     </div>
   );

@@ -3,11 +3,14 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { getWhatsAppLink } from '@/lib/utils';
 
 interface FooterProps {
   websiteName?: string;
   ownerName?: string;
   footerText?: string;
+  whatsapp?: string;
+  email?: string;
   socialX?: string;
   socialInstagram?: string;
   socialSubstack?: string;
@@ -17,6 +20,8 @@ export function Footer({
   websiteName = "A Quiet Space",
   ownerName = "Lucifer",
   footerText = "A space for thoughts, conversations, and honest reflection.",
+  whatsapp,
+  email,
   socialX,
   socialInstagram,
   socialSubstack,
@@ -74,7 +79,25 @@ export function Footer({
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 text-xs text-[var(--theme-secondary)]">
           <p>© {currentYear} {ownerName}. All rights reserved.</p>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
+            {whatsapp && (
+              <a
+                href={getWhatsAppLink(whatsapp, 'Hello, I came across your website.')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[var(--theme-text)] transition-colors"
+              >
+                WhatsApp
+              </a>
+            )}
+            {email && (
+              <a
+                href={`mailto:${email}`}
+                className="hover:text-[var(--theme-text)] transition-colors"
+              >
+                Email
+              </a>
+            )}
             {socialX && (
               <a
                 href={socialX}

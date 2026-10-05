@@ -190,12 +190,12 @@ export function AudioPlayer({ src, title, duration: initialDuration, className =
             type="button"
             onClick={togglePlay}
             aria-label={isPlaying ? 'Pause audio' : 'Play audio'}
-            className="min-h-[42px] min-w-[42px] sm:h-10 sm:w-10 rounded-full flex items-center justify-center bg-[var(--theme-accent)] text-white hover:opacity-90 active:scale-95 transition-all cursor-pointer shrink-0"
+            className="min-h-[44px] min-w-[44px] sm:h-11 sm:w-11 rounded-full flex items-center justify-center bg-[var(--theme-accent)] text-white hover:opacity-90 active:scale-95 transition-all cursor-pointer shrink-0"
           >
             {isPlaying ? (
-              <Pause className="h-4 w-4 fill-current" />
+              <Pause className="h-4 w-4 sm:h-5 sm:w-5 fill-current" />
             ) : (
-              <Play className="h-4 w-4 ml-0.5 fill-current" />
+              <Play className="h-4 w-4 sm:h-5 sm:w-5 ml-0.5 fill-current" />
             )}
           </button>
 
@@ -204,9 +204,9 @@ export function AudioPlayer({ src, title, duration: initialDuration, className =
             onClick={() => skip(-10)}
             title="Rewind 10 seconds"
             aria-label="Rewind 10 seconds"
-            className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded text-[var(--theme-secondary)] hover:text-[var(--theme-text)] transition-colors cursor-pointer"
+            className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded text-[var(--theme-secondary)] hover:text-[var(--theme-text)] transition-colors cursor-pointer"
           >
-            <RotateCcw className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            <RotateCcw className="h-4 w-4" />
           </button>
 
           <button
@@ -214,19 +214,19 @@ export function AudioPlayer({ src, title, duration: initialDuration, className =
             onClick={() => skip(10)}
             title="Forward 10 seconds"
             aria-label="Forward 10 seconds"
-            className="min-h-[40px] min-w-[40px] flex items-center justify-center rounded text-[var(--theme-secondary)] hover:text-[var(--theme-text)] transition-colors cursor-pointer"
+            className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded text-[var(--theme-secondary)] hover:text-[var(--theme-text)] transition-colors cursor-pointer"
           >
-            <RotateCw className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            <RotateCw className="h-4 w-4" />
           </button>
         </div>
 
         {/* Right: Speed & Volume */}
-        <div className="flex items-center gap-1.5 sm:gap-2.5">
+        <div className="flex items-center gap-1 sm:gap-2">
           <button
             type="button"
             onClick={cyclePlaybackRate}
             aria-label={`Playback speed: ${playbackRate}x`}
-            className="min-h-[36px] px-2 text-[11px] font-medium rounded border border-[var(--theme-border)] text-[var(--theme-secondary)] hover:text-[var(--theme-text)] transition-colors cursor-pointer flex items-center justify-center"
+            className="min-h-[44px] min-w-[44px] px-2 text-xs font-medium rounded border border-[var(--theme-border)] text-[var(--theme-secondary)] hover:text-[var(--theme-text)] transition-colors cursor-pointer flex items-center justify-center"
           >
             {playbackRate}x
           </button>
@@ -235,12 +235,12 @@ export function AudioPlayer({ src, title, duration: initialDuration, className =
             type="button"
             onClick={toggleMute}
             aria-label={isMuted ? 'Unmute' : 'Mute'}
-            className="min-h-[36px] min-w-[36px] flex items-center justify-center text-[var(--theme-secondary)] hover:text-[var(--theme-text)] cursor-pointer"
+            className="min-h-[44px] min-w-[44px] flex items-center justify-center text-[var(--theme-secondary)] hover:text-[var(--theme-text)] cursor-pointer"
           >
             {isMuted || volume === 0 ? (
-              <VolumeX className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <VolumeX className="h-4 w-4" />
             ) : (
-              <Volume2 className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <Volume2 className="h-4 w-4" />
             )}
           </button>
 

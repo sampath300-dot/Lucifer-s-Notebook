@@ -17,6 +17,7 @@ import {
   X,
   Check,
 } from 'lucide-react';
+import { getWhatsAppLink } from '@/lib/utils';
 
 interface ConversationsClientProps {
   initialConversations: Conversation[];
@@ -302,9 +303,31 @@ export function ConversationsClient({ initialConversations }: ConversationsClien
                   <span className="font-semibold text-[var(--theme-secondary)]">Contact Method:</span>
                   <p className="text-sm font-medium mt-0.5 text-[var(--theme-text)]">{selectedConv.contact_method}</p>
                 </div>
-                <div className="sm:col-span-2">
-                  <span className="font-semibold text-[var(--theme-secondary)]">Contact Information:</span>
-                  <p className="text-sm font-mono mt-0.5 select-all text-[var(--theme-text)]">{selectedConv.contact_info}</p>
+                <div className="sm:col-span-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+                  <div>
+                    <span className="font-semibold text-[var(--theme-secondary)]">Contact Information:</span>
+                    <p className="text-sm font-mono mt-0.5 select-all text-[var(--theme-text)]">{selectedConv.contact_info}</p>
+                  </div>
+                  {selectedConv.contact_method === 'WhatsApp' && (
+                    <a
+                      href={getWhatsAppLink(selectedConv.contact_info, `Hello ${selectedConv.name}, I am following up on your note.`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[var(--theme-accent)] text-white text-xs font-medium hover:opacity-90 transition-opacity self-start sm:self-auto cursor-pointer"
+                    >
+                      <MessageCircle className="h-3.5 w-3.5" />
+                      <span>Reply on WhatsApp</span>
+                    </a>
+                  )}
+                  {selectedConv.contact_method === 'Email' && (
+                    <a
+                      href={`mailto:${selectedConv.contact_info}?subject=${encodeURIComponent('Following up on your message')}`}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[var(--theme-accent)] text-white text-xs font-medium hover:opacity-90 transition-opacity self-start sm:self-auto cursor-pointer"
+                    >
+                      <Mail className="h-3.5 w-3.5" />
+                      <span>Send Email</span>
+                    </a>
+                  )}
                 </div>
                 {selectedConv.additional_context && (
                   <div className="sm:col-span-2 border-t border-[var(--theme-border)] pt-2">

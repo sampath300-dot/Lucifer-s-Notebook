@@ -36,6 +36,8 @@ export default async function RootLayout({
             websiteName={siteSettings.website_name}
             ownerName={siteSettings.owner_name}
             footerText={siteSettings.footer_text}
+            whatsapp={siteSettings.whatsapp}
+            email={siteSettings.email}
             socialX={siteSettings.social_x}
             socialInstagram={siteSettings.social_instagram}
             socialSubstack={siteSettings.social_substack}

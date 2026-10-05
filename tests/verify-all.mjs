@@ -15,6 +15,7 @@ async function runTests() {
   assert(html.includes('Some thoughts are easier to understand'), 'Hero heading found on homepage');
   assert(html.includes('Audio Journal'), 'Audio journal section found on homepage');
   assert(html.includes("Let's talk"), "Let's talk CTA found on homepage");
+  assert(html.includes("wa.me/917385314784"), 'WhatsApp link found in footer');
   console.log('✓ Homepage loaded successfully');
 
   // 2. Navigate to Thoughts
@@ -57,7 +58,9 @@ async function runTests() {
   assert.strictEqual(res.status, 200, "Let's talk page should return 200 OK");
   html = await res.text();
   assert(html.includes("What would you like me to call you?"), 'Form fields rendered');
-  console.log("✓ Let's talk page loaded successfully");
+  assert(html.includes("+91 73853 14784"), 'Configured WhatsApp number rendered on /talk');
+  assert(html.includes("wa.me/917385314784"), 'Configured wa.me deep link rendered on /talk');
+  console.log("✓ Let's talk page loaded successfully with WhatsApp integration");
 
   // 7 & 8. Test form submission validation and success
   console.log('7. Testing Form validation (empty required fields)...');
